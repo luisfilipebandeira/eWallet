@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 import colors from '../styles/colors';
 
-interface IButtonProps{
+interface IButtonProps extends ButtonProps{
     icon: string;
 }
 
-export function CardPrimary({icon}: IButtonProps){
+export function CardPrimary({icon, ...rest}: IButtonProps){
     return(
-        <TouchableOpacity style={styles.background}>
+        <TouchableOpacity style={styles.background} {...rest}>
             <View style={styles.circle}>
                 <Feather name={icon} size={22} />
             </View>

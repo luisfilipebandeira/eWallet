@@ -5,7 +5,6 @@ import {
     View, 
     StyleSheet,
     Image,
-    TouchableOpacity,
     Platform,
     StatusBar
 } from 'react-native';
@@ -13,20 +12,21 @@ import {
 import side from '../assets/side.png';
 import logo from '../assets/logo.png';
 
-import {Feather} from '@expo/vector-icons'
-
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 import { format, isBefore } from 'date-fns';
 
+import {Button} from '../components/Button';
+
+import { useNavigation } from '@react-navigation/core';
+
 export function Welcome(){
     const [time, setTime] = useState(new Date());
+    const navigation = useNavigation();
 
-    useEffect(()=>{
-        if(isBefore(time, new Date()))
-            setTime(new Date());
-        
-    }, []);
+    function handleStart(){
+        navigation.navigate('Dashboard');
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -48,10 +48,7 @@ export function Welcome(){
                 </View>
 
                 <View style={styles.bottom}>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.textButton}>Entrar</Text>
-                        <Feather name="arrow-right" style={styles.buttonIcon} size={16} />
-                    </TouchableOpacity>
+                    <Button title="Entrar" onPress={handleStart} icon="arrow-right" />
                 </View>
             </View>
         </SafeAreaView>
@@ -103,21 +100,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    button: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: 190,
-        height: 50,
-        borderRadius: 10,
-        flexDirection: 'row',
-        backgroundColor: colors.button
-    },
-    textButton: {
-        fontFamily: fonts.text,
-        fontSize: 16,
-        fontWeight: '500'
-    },
-    buttonIcon: {
-        marginLeft: 5,
-    }
 })

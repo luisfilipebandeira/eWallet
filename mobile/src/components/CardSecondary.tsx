@@ -3,24 +3,25 @@ import {
     StyleSheet, 
     TouchableOpacity, 
     View,
-    Text
+    Text,
+    ButtonProps
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
-interface IButtons {
+interface IButtons extends ButtonProps {
     icon: string;
-    subTitle: string;
+    title: string;
 }
 
-export function CardSecondary({icon, subTitle}: IButtons){
+export function CardSecondary({icon, title, ...rest}: IButtons){
     return(
-        <TouchableOpacity style={styles.content}>
+        <TouchableOpacity style={styles.content} {...rest}>
             <View style={styles.backgroundIcon}>
                 <Feather name={icon} size={20} style={styles.icon} />
             </View>
-            <Text style={styles.text}>{subTitle}</Text>
+            <Text style={styles.text}>{title}</Text>
         </TouchableOpacity>
     )
 }

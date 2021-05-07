@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
     Platform, 
     SafeAreaView, 
@@ -8,8 +8,9 @@ import {
     View,
     Image
 } from 'react-native';
+import NumberFormat from 'react-number-format';
 
-import {Feather} from '@expo/vector-icons';
+import api from '../services/api';
 
 import logo from '../assets/logo.png';
 import fonts from '../styles/fonts';
@@ -17,8 +18,34 @@ import colors from '../styles/colors';
 
 import {CardPrimary} from '../components/CardPrimary';
 import {CardSecondary} from '../components/CardSecondary';
+import { useNavigation } from '@react-navigation/core';
+
+interface Balance{
+    getBalance: number;
+}
 
 export function Dashboard(){
+    const [balance, setBalance] = useState<Balance>({} as Balance);
+    const navigation = useNavigation();
+
+    useEffect(()=>{
+        async function loadStocks(): Promise<void>{
+            const response = await api.get('stocks');
+
+            setBalance(response.data);
+        }
+
+        loadStocks();
+    },[balance]);
+
+    function handleAddMovimentation(){
+        navigation.navigate('AddMovimentation');
+    }
+
+    function handleDeleteMovimentation(){
+        navigation.navigate('DeleteMovimentation');
+    }
+    
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.title}>
@@ -29,23 +56,28 @@ export function Dashboard(){
             <Text style={styles.subTitle}>Account Overview</Text>
             <View style={styles.accountBalance}>
                 <View style={styles.balanceBox}>
-                    <Text style={styles.currentValue}>20,600</Text>
+                    <NumberFormat 
+                        renderText={text => <Text style={styles.currentValue}>{text}</Text>} 
+                        value={(balance.getBalance).toFixed(2)} 
+                        displayType={'text'} 
+                        thousandSeparator={true} 
+                        prefix={'R$ '} />
                     <Text style={styles.legend}>Current Balance</Text>
                 </View>
             </View>
 
             <Text style={styles.subTitle}>Operations</Text>
             <View style={styles.buttonsOperations}>
-                <CardPrimary icon="plus"/>
-                <CardPrimary icon="minus" />
+                <CardPrimary icon="plus" title="" onPress={handleAddMovimentation}/>
+                <CardPrimary icon="minus" title=""  onPress={handleDeleteMovimentation} />
             </View>
 
             <Text style={styles.subTitle}>Services</Text>
             <View style={styles.operations}>
-                <CardSecondary icon="dollar-sign" subTitle="Ações" />
-                <CardSecondary icon="home" subTitle="Fundo Imobiliarios" />
-                <CardSecondary icon="bar-chart" subTitle="Renda Fixa" />
-                <CardSecondary icon="hash" subTitle="Rendimento" />
+                <CardSecondary icon="dollar-sign" title="Ações" onPress={() => navigation.navigate('Stocks')} />
+                <CardSecondary icon="home" title="Fundo Imobiliarios" onPress={() => {}} />
+                <CardSecondary icon="bar-chart" title="Renda Fixa" onPress={() => {}} />
+                <CardSecondary icon="hash" title="Rendimento" onPress={() => {}} />
             </View>
         </SafeAreaView>
     )
