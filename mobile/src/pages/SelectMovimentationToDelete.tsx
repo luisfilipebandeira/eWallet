@@ -16,12 +16,12 @@ import logo from '../assets/logo.png';
 import { Button } from '../components/Button';
 import { useNavigation } from '@react-navigation/core';
 
-export function SelectMovimentation(){
+export function SelectMovimentationToDelete(){
     const [type, setType] = useState('');
     const navigation = useNavigation();
 
     function handleClickButton(operation: string){
-        navigation.navigate("AddMovimentation", {operation});
+        navigation.navigate("DeleteMovimentation", {operation});
     }
 
     return(

@@ -7,7 +7,7 @@ import realStateFundRouter from './realStateFund.routes';
 const routes = Router();
 
 routes.use('/stocks', stocksRouter);
-routes.use('/fixedIncome', fixedIncomeRouter);
+routes.use('/income', fixedIncomeRouter);
 routes.use('/realStateFund', realStateFundRouter);
 
 export default routes;
