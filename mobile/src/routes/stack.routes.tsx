@@ -5,6 +5,7 @@ import {Welcome} from '../pages/Welcome';
 import {Dashboard} from '../pages/Dashboard';
 import {AddMovimentation} from '../pages/AddMovimentation';
 import {DeleteMovimentation} from '../pages/DeleteMovimentation';
+import {SelectMovimentation} from '../pages/SelectMovimentation';
 import {Stocks} from '../pages/Stocks';
 
 import colors from '../styles/colors';
@@ -23,6 +24,7 @@ const AppRoutes: React.FC = () => (
         <stackRoutes.Screen name="Dashboard" component={Dashboard} />
         <stackRoutes.Screen name="AddMovimentation" component={AddMovimentation} />
         <stackRoutes.Screen name="DeleteMovimentation" component={DeleteMovimentation} />
+        <stackRoutes.Screen name="SelectMovimentation" component={SelectMovimentation} />
         <stackRoutes.Screen name="Stocks" component={Stocks} />
     </stackRoutes.Navigator>
 );

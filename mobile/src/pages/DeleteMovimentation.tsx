@@ -33,6 +33,7 @@ interface Stocks {
 
 export function DeleteMovimentation(){
     const [stocks, setStocks] = useState<Stocks[]>([]);
+    const navigation = useNavigation();
 
     function handleDelete(stock: Stocks){
         Alert.alert("Remover", `Deseja mesmo remover ${stock.name}?`, [
@@ -49,6 +50,8 @@ export function DeleteMovimentation(){
                                 id: stock.id
                             }
                         });
+
+                        navigation.navigate('Dashboard');
                     }catch(err){
                         Alert.alert('Não foi possivel remover! 🤧');
                     }
@@ -65,7 +68,7 @@ export function DeleteMovimentation(){
         }
 
         loadStocks()
-    }, [stocks])
+    }, [])
 
     return(
         <SafeAreaView style={styles.content}>

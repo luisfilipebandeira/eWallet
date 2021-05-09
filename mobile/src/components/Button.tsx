@@ -16,7 +16,7 @@ interface IButtonProps extends ButtonProps{
     icon: string;
 }
 
-export function Button({title, icon, ...rest}: IButtonProps){
+export function Button({title, icon,...rest}: IButtonProps){
     return(
         <TouchableOpacity style={styles.button} {...rest}>
             <Text style={styles.textButton}>{title}</Text>
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 10,
         flexDirection: 'row',
-        backgroundColor: colors.button
+        backgroundColor: colors.button,
+        marginTop: 10
     },
     textButton: {
         fontFamily: fonts.text,
@@ -42,5 +43,5 @@ const styles = StyleSheet.create({
     },
     buttonIcon: {
         marginLeft: 5,
-    }
+    },
 })

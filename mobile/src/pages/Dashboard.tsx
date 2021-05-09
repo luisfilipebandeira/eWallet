@@ -31,15 +31,14 @@ export function Dashboard(){
     useEffect(()=>{
         async function loadStocks(): Promise<void>{
             const response = await api.get('stocks');
-
             setBalance(response.data);
         }
-
+    
         loadStocks();
-    },[balance]);
+    },[balance]); 
 
-    function handleAddMovimentation(){
-        navigation.navigate('AddMovimentation');
+    function handleSelectMovimentation(){
+        navigation.navigate('SelectMovimentation');
     }
 
     function handleDeleteMovimentation(){
@@ -58,7 +57,8 @@ export function Dashboard(){
                 <View style={styles.balanceBox}>
                     <NumberFormat 
                         renderText={text => <Text style={styles.currentValue}>{text}</Text>} 
-                        value={(balance.getBalance).toFixed(2)} 
+                        value={balance.getBalance} 
+                        decimalScale={2}
                         displayType={'text'} 
                         thousandSeparator={true} 
                         prefix={'R$ '} />
@@ -68,7 +68,7 @@ export function Dashboard(){
 
             <Text style={styles.subTitle}>Operations</Text>
             <View style={styles.buttonsOperations}>
-                <CardPrimary icon="plus" title="" onPress={handleAddMovimentation}/>
+                <CardPrimary icon="plus" title="" onPress={handleSelectMovimentation}/>
                 <CardPrimary icon="minus" title=""  onPress={handleDeleteMovimentation} />
             </View>
 

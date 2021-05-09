@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/core';
+import { useNavigation, useRoute } from '@react-navigation/core';
 import React, { useState } from 'react';
 import {
     StyleSheet,
@@ -20,16 +20,22 @@ import colors from '../styles/colors';
 
 import fonts from '../styles/fonts';
 
+interface IOperation{
+    operation: string;
+}
+
 export function AddMovimentation(){
     const [quantity, setQuantity] = useState('');
     const [name, setName] = useState('');
     const [value, setValue] = useState('');
 
     const navigation = useNavigation();
+    const route = useRoute();
+    const { operation } = route.params as IOperation;
 
     async function handleSubmit(){
         try{
-            await api.post('/stocks', {
+            await api.post(`/${operation}`, {
                 name: name,
                 value: Number(value),
                 quantity: Number(quantity)
@@ -50,7 +56,7 @@ export function AddMovimentation(){
                     </View>
                     
                     <View style={styles.background}>
-                        <Text style={styles.subTitle}>Adicionar Ativo</Text>
+                        <Text style={styles.subTitle}>Adicionar Ativo ({operation})</Text>
                         <TextInput 
                             placeholder="Quantidade"
                             keyboardType="number-pad"
