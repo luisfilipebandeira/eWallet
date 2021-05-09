@@ -10,6 +10,15 @@ eWallet tem o objetivo de ser uma atualização do Luis Investimentos: https://g
   📊Controlador de Ações
 </h4>
 
+<p>Telas do App</p>
+<p align="center">
+    <img alt="Tela 1" src=".github/dashboard.jpg" width="20%">
+    <img alt="Tela 1" src=".github/selecionarAtivo.jpg" width="20%">
+    <img alt="Tela 1" src=".github/adicionarAtivo.jpg" width="20%">
+    <img alt="Tela 1" src=".github/deletarAtivo.jpg" width="20%">
+</p>
+
+
 ## :rocket: Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
@@ -17,10 +26,11 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Node.js](https://nodejs.org/en/)
 - [React](https://reactjs.org)
 - [React Native](https://facebook.github.io/react-native/)
+- [Postgres](https://www.postgresql.org/)
 
 ## 💻 Projeto
 
-App para controle de ações da minha carteira
+App para controle de ações da minha carteira de investimentos
 
 ## 🤔 Como contribuir
 
